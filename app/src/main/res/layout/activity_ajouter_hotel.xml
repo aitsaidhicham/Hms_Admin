@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".AjouterHotelActivity">
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter un Hôtel"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+
+        android:textColor="@color/white"
+        android:id="@+id/nomHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_seConnecter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="Nom hotel"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/wilayaHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nomHotel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="Wilaya hotel"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/prixNuit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wilayaHotel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="Prix par nuit"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/stars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prixNuit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="Rating"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stars"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="numero telephone"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+    <EditText
+        android:textColor="@color/white"
+        android:id="@+id/localisation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="30dp"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="localisation"
+        android:inputType="text"
+        android:padding="15dp"
+        android:paddingHorizontal="10dp"
+        android:textColorHint="@color/white"></EditText>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+    android:id="@+id/solo"
+    android:text="chambre solo"
+    android:layout_below="@+id/localisation"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/duo"
+        android:text="chambre duo"
+        android:textColor="@color/white"
+        android:layout_below="@+id/solo"
+        android:background="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/triple"
+        android:text="chambre triple"
+        android:textColor="@color/white"
+        android:layout_below="@+id/duo"
+        android:background="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/studio"
+        android:text="studio"
+        android:textColor="@color/white"
+        android:layout_below="@+id/triple"
+        android:background="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/imageHotel"
+        android:onClick="pickImage"
+        android:background="@color/white"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        />
+
+
+
+    <Button
+        android:onClick="ajouterHotelbdd"
+        android:textColor="#000000"
+        android:paddingStart="10dp"
+        android:drawableStart="@drawable/ic_circle"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/localisation"
+        android:text="Ajouter"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"/>
+
+
+
+</RelativeLayout>

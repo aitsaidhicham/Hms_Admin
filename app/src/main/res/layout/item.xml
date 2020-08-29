@@ -4,24 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-
+    android:layout_margin="10dp"
     android:layout_height="wrap_content"
     android:elevation="8dp">
 
     <androidx.cardview.widget.CardView
+
+        app:cardCornerRadius="15dp"
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="140dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#DA000000"
+            android:background="#E0000000"
             android:elevation="8dp">
 
             <ImageView
                 android:id="@+id/place_image"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+                android:maxWidth="50dp"
+                android:maxHeight="50dp"
+                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +34,7 @@
                 app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal" />
 
             <TextView
+                android:textSize="20dp"
                 android:id="@+id/place_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,6 +55,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/place_image"
                 android:text="la wilaya"
+                android:textSize="15dp"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/place_image"
                 tools:layout_editor_absoluteY="16dp" />
@@ -60,23 +67,13 @@
                 android:layout_below="@+id/wilaya"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
+                android:drawableStart="@drawable/ic_star"
                 android:layout_toRightOf="@+id/place_image"
                 android:text="4,5"
+                android:textSize="20dp"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/place_image"
                 tools:layout_editor_absoluteY="16dp" />
-
-            <RatingBar
-                android:background="@color/white"
-                android:id="@+id/rating"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/wilaya"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/etoile"
-                android:numStars="6"></RatingBar>
 
             <TextView
                 android:id="@+id/prix"
@@ -87,13 +84,14 @@
                 android:layout_marginTop="2dp"
                 android:layout_toRightOf="@+id/place_image"
                 android:text="4500 DA"
+                android:textSize="15dp"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toEndOf="@+id/place_image"
                 tools:layout_editor_absoluteY="16dp" />
 
             <TextView
                 android:id="@+id/localisation"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/prix"
                 android:layout_marginStart="8dp"
@@ -109,22 +107,7 @@
 
                 ></TextView>
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_below="@+id/prix"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_toRightOf="@+id/localisation"
-                android:background="@drawable/custom_orange_button"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:text="voir détail"
-                android:textColor="@color/background"
-                android:textSize="11sp"
-                app:layout_constraintStart_toEndOf="@+id/place_image"
 
-                ></TextView>
 
 
         </RelativeLayout>

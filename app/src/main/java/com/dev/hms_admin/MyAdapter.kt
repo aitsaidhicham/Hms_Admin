@@ -1,23 +1,35 @@
 package com.dev.hms_admin
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item.view.*
+import java.lang.Exception
 
-open class MyAdapter (var arrayList: ArrayList<Model>,val context : Context) :
+open class MyAdapter(
+    var arrayList: ArrayList<Model>,
+    val context: ValueEventListener) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         fun bindItems(model : Model){
+
+
             itemView.place_name.text = model.nom
             itemView.wilaya.text = model.wilaya
             itemView.etoile.text = model.rating
             itemView.localisation.text = model.localisation
-            itemView.place_image.setImageResource(model.image)
+            itemView.prix.text = model.prix
+            var link = model.image.toString()
+
+            Picasso.get().load(link).into(itemView.place_image)
+            /*itemView.place_image.setImageURI(link)*/
 
 
 

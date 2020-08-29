@@ -1,28 +1,22 @@
 package com.dev.hms_admin
 
-import android.Manifest
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_ajouter_hotel.*
-import java.net.URI
 import java.util.*
 
 
 class AjouterHotelActivity : AppCompatActivity() {
+    lateinit var downloadURL :String
     var firebaseStorage : FirebaseStorage? = null
     var myStorageRef : StorageReference? = null
     var image :Uri? = null
@@ -49,6 +43,7 @@ class AjouterHotelActivity : AppCompatActivity() {
         val email = email.text.toString()
         val numTel = phone.text.toString()
         val localisation = localisation.text.toString()
+        val description  = description.text.toString()
         var chambre_solo = false
         var chambre_duo = false
         var chambre_triple = false
@@ -73,11 +68,39 @@ class AjouterHotelActivity : AppCompatActivity() {
         myRef!!.child("hotels").child(nom_hotel).child("Rating").setValue(rating)
         myRef!!.child("hotels").child(nom_hotel).child("email").setValue(email)
         myRef!!.child("hotels").child(nom_hotel).child("numero_telephone").setValue(numTel)
+        myRef!!.child("hotels").child(nom_hotel).child("description").setValue(description)
         myRef!!.child("hotels").child(nom_hotel).child("localisation").setValue(localisation)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("solo").setValue(chambre_solo)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("duo").setValue(chambre_duo)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("triple").setValue(chambre_triple)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("studio").setValue(chambre_studio)
+
+
+        var uuid : UUID = UUID.randomUUID()
+
+        val imagename = "images/$uuid.jpg"
+        val storageref = myStorageRef!!.child(imagename)
+        val ref = storageref.putFile(image!!)
+        val urlTask = ref.continueWithTask { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            storageref.downloadUrl
+        }.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result.toString()
+                myRef!!.child("hotels").child(nom_hotel).child("image").setValue(downloadUri)
+            } else {
+            }
+        }
+
+
+
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
 
 
     }
@@ -94,6 +117,9 @@ class AjouterHotelActivity : AppCompatActivity() {
            image = data!!.data
 
         }
+
+
+
     }
 
 }

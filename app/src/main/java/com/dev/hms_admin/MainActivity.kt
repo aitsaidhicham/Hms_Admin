@@ -1,16 +1,22 @@
 package com.dev.hms_admin
 
 import android.content.Intent
+import android.media.Image
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item.*
+
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,14 +24,15 @@ class MainActivity : AppCompatActivity() {
     var firebaseDatabase : FirebaseDatabase? = null
     var myRef : DatabaseReference? = null
 
-    var array_nom : ArrayList<String>? = null
-    var array_email : ArrayList<String>? = null
-    var array_localisation: ArrayList<String>? = null
-    var array_prix : ArrayList<String>? = null
-    var array_rating : ArrayList<String>? = null
-    var array_numTel : ArrayList<String>? = null
-    var array_wilaya : ArrayList<String>? = null
-    var array_typechambre : ArrayList<String>? = null
+    var array_nom: MutableList<String> = mutableListOf<String>()
+    var array_email: MutableList<String> = mutableListOf<String>()
+    var array_localisation: MutableList<String> = mutableListOf<String>()
+    var array_prix: MutableList<String> = mutableListOf<String>()
+    var array_rating: MutableList<String> = mutableListOf<String>()
+    var array_numTel: MutableList<String> = mutableListOf<String>()
+    var array_wilaya: MutableList<String> = mutableListOf<String>()
+    var array_images: MutableList<String> = mutableListOf<String>()
+
 
 
     var mAuth : FirebaseAuth? = null
@@ -44,12 +51,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         mAuth = FirebaseAuth.getInstance()
         firebaseDatabase = FirebaseDatabase.getInstance()
         myRef = firebaseDatabase!!.getReference()
         val newRef = firebaseDatabase!!.getReference("hotels")
-
-        var size : Int ? = null
 
         newRef.addValueEventListener(object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
@@ -58,68 +64,78 @@ class MainActivity : AppCompatActivity() {
                     var i = 0
 
                 for (snap in snapshot.children) {
-                    i++
+
                     val hm = snap.value as HashMap<String,String>
                     if(hm.size > 0){
-                        val nomFB = hm["nom"]
-                        val numTelFB = hm["numero_telephone"]
-                        val localisationFB = hm["localisation"]
-                        val emailFB = hm["email"]
-                        val ratingFB = hm["Rating"]
-                        val prixFB = hm["prix_par_nuit"]
-                        val wilayaFB = hm["wilaya"]
+                        val nomFB = hm["nom"].toString()
+                        val numTelFB = hm["numero_telephone"].toString()
+                        val localisationFB = hm["localisation"].toString()
+                        val emailFB = hm["email"].toString()
+                        val ratingFB = hm["Rating"].toString()
+                        val prixFB = hm["prix_par_nuit"].toString()
+                        val wilayaFB = hm["wilaya"].toString()
                         /*val typeChambreFB = hm["type_chambre"]*/
+                        val im = hm["image"].toString()
 
-                        if (nomFB != null) {
-                            array_nom?.add(i,nomFB)
-                        }
-                        if (emailFB != null) {
-                            array_email?.add(i,emailFB)
-                        }
-                        if (localisationFB != null) {
-                            array_localisation?.add(i,localisationFB)
-                        }
-                        if (numTelFB != null) {
-                            array_numTel?.add(i,numTelFB)
-                        }
-                        if (ratingFB != null) {
-                            array_rating?.add(i,ratingFB)
-                        }
-                        if (prixFB != null) {
-                            array_prix?.add(i,prixFB)
-                        }
-                        if (wilayaFB != null) {
-                            array_wilaya?.add(i,wilayaFB)
-                        }
+
+                        array_nom.add(nomFB)
+                        array_email.add(emailFB).toString()
+                        array_localisation.add(localisationFB).toString()
+                        array_numTel.add(numTelFB).toString()
+                        array_rating.add(ratingFB).toString()
+                        array_prix.add(prixFB).toString()
+                        array_wilaya.add(wilayaFB).toString()
                        /* if (typeChambreFB != null) {
                             array_typechambre!!.add(typeChambreFB)
                         }*/
+                        array_images.add(im!!).toString()
+
 
                     }
 
+                    i++
 
                 }
 
-                size = array_localisation?.size
+                var dis = array_nom.distinct()
+                var size = dis.size
+
+
+                var arrayList = ArrayList<Model>()
+
+                try {
+
+                    for(a in 0..size-1){
+                        val nom = array_nom.get(a)
+                        val wilaya = array_wilaya.get(a)
+                        val localisation = array_localisation.get(a)
+                        val rating = array_rating.get(a)
+                        val prix = array_prix.get(a)
+                        val numero = array_numTel.get(a)
+                        val maill = array_email.get(a)
+                        val img = array_images.get(a)
+
+                        /*val m = picasso_image as Int*/
+
+
+                        arrayList.add(Model(nom, wilaya, localisation, rating,prix,maill,numero,img))
+                        arrayList.distinct()
+                    }
+
+                }catch (e: Exception){
+
+                }
+                println(arrayList.size)
+                arrayList.distinct()
+                val myAdapter = MyAdapter(arrayList,this)
+
+                recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+                recyclerView.adapter = myAdapter
 
             }
         })
 
 
-
-        val arrayList = ArrayList<Model>()
-
-
-        for(a in 0..5){
-            arrayList.add(a,Model(array_nom!!.get(a),
-                array_wilaya!!.get(a), array_localisation!!.get(a), array_rating!!.get(a),R.drawable.accent_bg))
-        }
-
-
-        val myAdapter = MyAdapter(arrayList,this)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = myAdapter
 
     }
 
@@ -131,3 +147,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/res"
+        app:cardBackgroundColor="#DD000000"
+        android:elevation="3dp"
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" >
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:text="Nouvelle reservation"
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/nomClient"
+            android:text="dsfsdfsdfsdfsd"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        <Button
+            android:id="@+id/refuser"
+            android:layout_marginStart="280dp"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/ic_clear"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <Button
+            android:id="@+id/accepter"
+            android:layout_marginStart="80dp"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="bottom"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_check"
+
+            />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

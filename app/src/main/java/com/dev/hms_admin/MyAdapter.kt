@@ -11,10 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item.view.*
 import java.lang.Exception
 
-open class MyAdapter(
-    var arrayList: ArrayList<Model>,
-    val context: ValueEventListener) :
-    RecyclerView.Adapter<MyAdapter.ViewHolder>() {
+open class MyAdapter(var arrayList: ArrayList<Model>, val context: ValueEventListener) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 

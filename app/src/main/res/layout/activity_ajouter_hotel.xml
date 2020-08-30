@@ -185,6 +185,7 @@
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:layout_marginHorizontal="10dp"
                 android:id="@+id/duo"
@@ -216,7 +217,46 @@
 
         </LinearLayout>
 
+
+
     </LinearLayout>
+
+    <EditText
+        android:textColor="@color/white"
+        android:layout_marginTop="420dp"
+        android:layout_centerHorizontal="true"
+        android:hint="prix solo"
+        android:textColorHint="@color/white"
+        android:id="@+id/prix_solo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:hint="prix duo"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="455dp"
+        android:id="@+id/prix_duo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:textColor="@color/white"
+        android:hint="prix triple"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="485dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/prix_triple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:hint="prix studio"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_marginTop="520dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/prix_studio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 
@@ -224,11 +264,11 @@
 
         android:id="@+id/imageHotel"
         android:onClick="pickImage"
-        android:background="@color/white"
+        android:background="@drawable/ajouter"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="190dp"
         />
@@ -241,11 +281,11 @@
         android:hint="Description de l'hotel"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="40dp"
+        android:paddingStart="8dp"
         android:layout_alignParentBottom="true"
-        android:padding="40dp"
         android:background="@drawable/custom_input"
         android:layout_width="200dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="120dp" />
 
     <Button
         android:onClick="ajouterHotelbdd"

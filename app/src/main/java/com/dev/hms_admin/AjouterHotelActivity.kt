@@ -48,18 +48,26 @@ class AjouterHotelActivity : AppCompatActivity() {
         var chambre_duo = false
         var chambre_triple = false
         var chambre_studio = false
+        var prixSolo = prix_solo.text.toString()
+        var prixDuo = prix_duo.text.toString()
+        var prixTriple = prix_triple.text.toString()
+        var prixStudio = prix_studio.text.toString()
 
         if(solo.isChecked()){
             chambre_solo = true
+
         }
         if (duo.isChecked()){
             chambre_duo = true
+
         }
         if (triple.isChecked()){
             chambre_triple = true
+
         }
         if (studio.isChecked){
             chambre_studio = true
+
         }
 
         myRef!!.child("hotels").child(nom_hotel).child("nom").setValue(nom_hotel)
@@ -74,6 +82,11 @@ class AjouterHotelActivity : AppCompatActivity() {
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("duo").setValue(chambre_duo)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("triple").setValue(chambre_triple)
         myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("studio").setValue(chambre_studio)
+        myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("prix_solo").setValue(prixSolo)
+        myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("prix_duo").setValue(prixDuo)
+        myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("prix_triple").setValue(prixTriple)
+        myRef!!.child("hotels").child(nom_hotel).child("type_chambre").child("prix_studio").setValue(prixStudio)
+
 
 
         var uuid : UUID = UUID.randomUUID()

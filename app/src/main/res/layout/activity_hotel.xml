@@ -7,11 +7,13 @@
     tools:context=".HotelActivity">
 
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         tools:listitem="@layout/item_reservation"
         android:id="@+id/recyclerReservations"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
 
 

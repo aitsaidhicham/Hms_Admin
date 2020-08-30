@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         if(currentUser == null){
             val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
+        }else if(currentUser.uid != "BdCeNyLsxfe1PrEVO1ReoGOrhyC2" ){
+            val intent = Intent(this, HotelActivity::class.java)
+            startActivity(intent)
         }
     }
 

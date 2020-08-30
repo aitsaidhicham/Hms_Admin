@@ -1,5 +1,6 @@
 package com.dev.hms_admin
 
+import android.R.attr.password
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -24,6 +27,8 @@ class AjouterHotelActivity : AppCompatActivity() {
     var myRef : DatabaseReference? = null
     val REQUEST_CODE = 100
 
+    var mAuth : FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ajouter_hotel)
@@ -31,6 +36,10 @@ class AjouterHotelActivity : AppCompatActivity() {
         myRef = firebaseDatabase!!.getReference()
         firebaseStorage = FirebaseStorage.getInstance()
         myStorageRef = firebaseStorage!!.getReference()
+
+        mAuth = FirebaseAuth.getInstance()
+
+
 
     }
 
@@ -52,6 +61,10 @@ class AjouterHotelActivity : AppCompatActivity() {
         var prixDuo = prix_duo.text.toString()
         var prixTriple = prix_triple.text.toString()
         var prixStudio = prix_studio.text.toString()
+
+
+
+
 
         if(solo.isChecked()){
             chambre_solo = true
@@ -89,6 +102,8 @@ class AjouterHotelActivity : AppCompatActivity() {
 
 
 
+
+
         var uuid : UUID = UUID.randomUUID()
 
         val imagename = "images/$uuid.jpg"
@@ -103,11 +118,26 @@ class AjouterHotelActivity : AppCompatActivity() {
             storageref.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
+
                 val downloadUri = task.result.toString()
                 myRef!!.child("hotels").child(nom_hotel).child("image").setValue(downloadUri)
+                Toast.makeText(applicationContext, "image uploaded", Toast.LENGTH_SHORT).show()
             } else {
             }
         }
+
+
+        mAuth = FirebaseAuth.getInstance()
+
+        mAuth!!.createUserWithEmailAndPassword(email, email)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(applicationContext, "hotel ajouté", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(applicationContext, "hotel non ajouté", Toast.LENGTH_SHORT).show()
+                }
+            }
+
 
 
 
@@ -128,6 +158,7 @@ class AjouterHotelActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
            image = data!!.data
+            Toast.makeText(applicationContext, "image selectionnée", Toast.LENGTH_SHORT).show()
 
         }
 

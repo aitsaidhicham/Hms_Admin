@@ -159,6 +159,7 @@ class AjouterHotelActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
            image = data!!.data
             Toast.makeText(applicationContext, "image selectionnée", Toast.LENGTH_SHORT).show()
+            imageHotel.setImageURI(image)
 
         }
 

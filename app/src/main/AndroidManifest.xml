@@ -14,11 +14,10 @@
         <activity android:name=".Ccp"></activity>
         <activity android:name=".AjouterHotelActivity" />
         <activity android:name=".HotelActivity" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

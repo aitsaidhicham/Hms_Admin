@@ -45,6 +45,9 @@ class AjouterHotelActivity : AppCompatActivity() {
 
     fun ajouterHotelbdd(view : View){
 
+
+
+
         val nom_hotel = nomHotel.text.toString()
         val wilaya_hotel = wilayaHotel.text.toString()
         val prix_nuit = prixNuit.text.toString()
@@ -62,9 +65,16 @@ class AjouterHotelActivity : AppCompatActivity() {
         var prixTriple = prix_triple.text.toString()
         var prixStudio = prix_studio.text.toString()
 
+        mAuth = FirebaseAuth.getInstance()
 
-
-
+        mAuth!!.createUserWithEmailAndPassword(email, email)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(applicationContext, "hotel ajouté", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(applicationContext, "hotel non ajouté", Toast.LENGTH_SHORT).show()
+                }
+            }
 
         if(solo.isChecked()){
             chambre_solo = true
@@ -126,24 +136,9 @@ class AjouterHotelActivity : AppCompatActivity() {
             }
         }
 
+        /*val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)*/
 
-        mAuth = FirebaseAuth.getInstance()
-
-        mAuth!!.createUserWithEmailAndPassword(email, email)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(applicationContext, "hotel ajouté", Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(applicationContext, "hotel non ajouté", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-
-
-
-
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
 
 
     }

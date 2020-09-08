@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -132,6 +133,30 @@ class MainActivity : AppCompatActivity() {
     fun ajouterHotel(view:View){
         val intent = Intent(this, AjouterHotelActivity::class.java)
         startActivity(intent)
+    }
+
+    fun disc(view:View){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Deconnexion")
+        builder.setMessage("Se deconnecter ?")
+
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            try {
+                mAuth!!.signOut()
+            }catch (e : Exception){
+
+            }
+            val intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
+        }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+        }
+        builder.show()
+
     }
 
 

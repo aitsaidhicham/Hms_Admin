@@ -22,9 +22,6 @@ class ReservationAdapter(var reservation: MutableList<Reservation>, private val 
             itemView.Duree.text = "Durée : " + reservation.Duree
             itemView.prix.text = "prix : " + reservation.prix
 
-
-
-
         }
 
 

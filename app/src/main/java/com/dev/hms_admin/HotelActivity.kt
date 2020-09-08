@@ -3,7 +3,9 @@ package com.dev.hms_admin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -87,6 +89,30 @@ class HotelActivity : AppCompatActivity(), OnresClickListener {
        val intent = Intent(this, Ccp::class.java)
        intent.putExtra("URL",url)
        startActivity(intent)
+
+    }
+
+    fun dis(view:View){
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Deconnexion")
+        builder.setMessage("Se deconnecter ?")
+
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            try {
+                mAuth!!.signOut()
+            }catch (e : Exception){
+
+            }
+            val intent = Intent(this, SignIn::class.java)
+            startActivity(intent)
+        }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+
+        }
+        builder.show()
 
     }
 

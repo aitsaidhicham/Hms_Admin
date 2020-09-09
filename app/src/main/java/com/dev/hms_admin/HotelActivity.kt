@@ -43,7 +43,8 @@ class HotelActivity : AppCompatActivity(), OnresClickListener {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                try {
+
+                    mAuth = FirebaseAuth.getInstance()
                     var i = 0
 
                     for (snap in dataSnapshot.children) {
@@ -51,24 +52,30 @@ class HotelActivity : AppCompatActivity(), OnresClickListener {
                         var mail = map["emailhotel"]
                         var etat = map["etat"]
                         val currentuser = mAuth!!.currentUser!!.email
-                        if (currentuser == mail && etat == "en attente") {
-                            arrayNom?.add(map["email"].toString())
-                            arrayDateDebut?.add(map["datedebut"].toString())
-                            arrayDateFin?.add(map["datefin"].toString())
-                            arrayDuree?.add(map["dure"].toString())
-                            arrayPrix?.add(map["prix"].toString())
-                            arrayimage?.add(map["URL"].toString())
+                        println("CUREEEEENTTT USERRRR1111111" + currentuser)
+                        println("MAILLLLL1111111" + mail)
+                        println("etatttttttttttt111111" + etat)
+                        if (currentuser!!.toLowerCase().equals(mail!!.toLowerCase()) && etat.equals("en attente")) {
+                            println("CUREEEEENTTT USERRRR" + currentuser)
+                            println("etatttttttttttt" + etat)
+                            arrayNom.add(map["email"].toString())
+                            arrayDateDebut.add(map["datedebut"].toString())
+                            arrayDateFin.add(map["datefin"].toString())
+                            arrayDuree.add(map["dure"].toString())
+                            arrayPrix.add(map["prix"].toString())
+                            arrayimage.add(map["URL"].toString())
 
                         }
-
+                    }
+                try{
                         res.add(Reservation(arrayNom.get(i),arrayDateDebut.get(i),arrayDateFin.get(i),arrayDuree.get(i),arrayPrix.get(i),arrayimage.get(i)))
 
                         i++
                     }
-                } catch (e: Exception) {
+                catch (e: Exception) {
                 }
                try {
-                   res!!.distinct()
+                   res!!
                    val reservationAdapter = ReservationAdapter(res,this@HotelActivity)
                    recyclerReservations.layoutManager = LinearLayoutManager(applicationContext)
                    recyclerReservations.adapter = reservationAdapter
